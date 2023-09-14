@@ -9,27 +9,27 @@ from email.mime.multipart import MIMEMultipart
 all_users = ", ".join(users)
 
 message = MIMEMultipart()
-message['Subject'] = 'Lecture 2 about Emails'
-message['From'] = sender
-message['To'] = all_users
+message["Subject"] = "Lecture 2 about Emails"
+message["From"] = sender
+message["To"] = all_users
 
-lecture_text = MIMEText('Hello, there! \nPlease take a look at this lecture!', 'plain')
+lecture_text = MIMEText("Hello, there! \nPlease take a look at this lecture!", "plain")
 
 message.attach(lecture_text)
 
-filename = 'some_PDF_file.pdf'
+filename = "some_PDF_file.pdf"
 
-with open(filename, 'rb') as attachment:
-    part = MIMEBase('application/pdf', "octet-stream")
+with open(filename, "rb") as attachment:
+    part = MIMEBase("application/pdf", "octet-stream")
     part.set_payload(attachment.read())
 
 encoders.encode_base64(part)
-part.add_header("Content-Disposition", f'attachment; filename={filename}')
+part.add_header("Content-Disposition", f"attachment; filename={filename}")
 message.attach(part)
 text = message.as_string()
 
 context = ssl.create_default_context()
-with smtplib.SMTP_SSL('smtp.gmail.com', 465, context=context) as server:
+with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as server:
     server.login(user=sender, password=password)
     server.ehlo()
     server.sendmail(sender, users, text)

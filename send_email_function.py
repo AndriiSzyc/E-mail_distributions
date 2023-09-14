@@ -2,7 +2,7 @@ from configs import password, users, sender
 
 
 def send_email(user, pwd, recipient, subject, body):
-    # user - email, pwd - password, recipient = recipient, subject - e-mail titl, body - e-mail message
+    # user - sender, pwd - password, recipient - users, subject - e-mail_titl, body - e-mail_message
     import smtplib
     import ssl
 
