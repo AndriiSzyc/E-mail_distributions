@@ -3,7 +3,6 @@ import smtplib
 import ssl
 
 
-
 title_message = "Python mini course!"
 body_message = "Hi there,\n How are you?"
 message = f"Subject: {title_message}\n\n{body_message}"
